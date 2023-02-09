@@ -28,8 +28,10 @@ jobs:
 
       - name: Run tests
         run: |
-          ./hello_test
+          ls
+          ctest 
 
       - name: Run mpi tests
         run: |
+          ls
           mpirun -np 4 ./mpi_tests
