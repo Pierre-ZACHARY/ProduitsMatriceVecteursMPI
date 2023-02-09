@@ -21,12 +21,13 @@ jobs:
 
       - name: Build
         run: |
-          mkdir build
-          cd build
-          cmake ..
-          make
+          cmake -S . -B build
+          cmake --build build
 
       - name: Run tests
         run: |
-          cd build/tests
-          ctest
+          ./build/tests/hello_test
+
+      - name: Run mpi tests
+        run: |
+          mpirun -np 4 ./build/tests/mpi_tests

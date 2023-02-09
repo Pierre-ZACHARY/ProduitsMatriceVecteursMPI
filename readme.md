@@ -1,4 +1,6 @@
-Pierre ZACHARY 
+Pierre ZACHARY
+
+[![CppUnit Tests](https://github.com/Pierre-ZACHARY/ProduitsMatriceVecteursMPI/actions/workflows/test.yml/badge.svg)](https://github.com/Pierre-ZACHARY/ProduitsMatriceVecteursMPI/actions/workflows/test.yml)
 
 ## Pré-requis 
 

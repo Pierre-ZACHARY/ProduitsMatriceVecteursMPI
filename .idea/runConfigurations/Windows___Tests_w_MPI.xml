@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Windows - Tests w/MPI" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-np 4 ./mpi_tests" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$PROJECT_DIR$/cmake-build-debug/tests" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ProduitsMatriceVecteursMPI" TARGET_NAME="mpi_tests" CONFIG_NAME="Debug" RUN_PATH="$PROJECT_DIR$/../../../../../Program Files/Microsoft MPI/Bin/mpiexec.exe">
+    <envs>
+      <env name="MPI_INCLUDE_PATH" value="MSMPI_INC=C:\Program Files (x86)\Microsoft SDKs\MPI\Include" />
+    </envs>
+    <method v="2">
+      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>
