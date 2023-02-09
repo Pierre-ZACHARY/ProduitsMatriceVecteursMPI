@@ -18,6 +18,8 @@ add_executable(
 add_executable(
         mpi_tests
         mpi_tests.cpp
+        ../classes/Matrice.cpp
+        ../classes/Matrice.h
         ../classes/MPI1_Impl.cpp
         ../classes/MPITemplate.cpp
         ../classes/MPI1_Impl.h
