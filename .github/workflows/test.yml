@@ -32,4 +32,4 @@ jobs:
       - name: Run mpi tests
         run: |
           cd build/tests
-          mpirun -np 4 ./mpi_tests
+          mpirun -np 2 ./mpi_tests
