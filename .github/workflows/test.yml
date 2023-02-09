@@ -23,11 +23,13 @@ jobs:
         run: |
           cmake -S . -B build
           cmake --build build
+          cd build/tests
+          ls
 
       - name: Run tests
         run: |
-          ./build/tests/hello_test
+          ./hello_test
 
       - name: Run mpi tests
         run: |
-          mpirun -np 4 ./build/tests/mpi_tests
+          mpirun -np 4 ./mpi_tests
