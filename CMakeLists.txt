@@ -19,15 +19,15 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${MPI_LINK_FLAGS}")
 add_executable(ProduitsMatriceVecteursMPI main.cpp
         classes/MPITemplate.cpp
         classes/MPITemplate.h
-        classes/Matrice.cpp
-        classes/Matrice.h
+        classes/Matrix.cpp
+        classes/Matrix.h
         classes/MPI1_Impl.cpp
         classes/MPI1_Impl.h)
 add_executable(Follower follower.cpp
         classes/MPITemplate.cpp
         classes/MPITemplate.h
-        classes/Matrice.cpp
-        classes/Matrice.h
+        classes/Matrix.cpp
+        classes/Matrix.h
         classes/MPI1_Impl.cpp
         classes/MPI1_Impl.h)
 target_link_libraries(ProduitsMatriceVecteursMPI MPI::MPI_CXX OpenMP::OpenMP_CXX)

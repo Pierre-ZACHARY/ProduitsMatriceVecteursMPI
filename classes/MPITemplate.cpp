@@ -12,9 +12,7 @@ MPITemplate::MPITemplate(int argc, char** argv) {
 }
 
 MPITemplate::~MPITemplate() {
+
     MPI_Finalize();
 }
 
-void MPITemplate::run() {
-
-}

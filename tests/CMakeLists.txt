@@ -14,12 +14,13 @@ add_executable(
         hello_test
         hello_test.cc
         matrice_test.cpp
-        ../classes/Matrice.cpp ../classes/Matrice.h)
+        ../classes/Matrix.h
+        ../classes/Matrix.cpp)
 add_executable(
         mpi_tests
         mpi_tests.cpp
-        ../classes/Matrice.cpp
-        ../classes/Matrice.h
+        ../classes/Matrix.h
+        ../classes/Matrix.cpp
         ../classes/MPI1_Impl.cpp
         ../classes/MPITemplate.cpp
         ../classes/MPI1_Impl.h

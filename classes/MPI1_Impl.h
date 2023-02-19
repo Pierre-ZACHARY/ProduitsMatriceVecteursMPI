@@ -8,12 +8,14 @@
 
 #include "MPITemplate.h"
 
+
 class MPI1_Impl: public MPITemplate{
 
     public:
         MPI1_Impl(int argc, char** argv);
-        void run() override;
         ~MPI1_Impl();
+
+        void run(int size);
 };
 
 

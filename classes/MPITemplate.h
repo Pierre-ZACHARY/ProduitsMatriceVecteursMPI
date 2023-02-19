@@ -7,15 +7,15 @@
 
 
 #include <mpi.h>
+#include <chrono>
 
 class MPITemplate {
     protected:
         int world_rank, world_size;
 
-    public:
+public:
         MPITemplate(int argc, char** argv);
         ~MPITemplate();
-        virtual void run();
 };
 
 
