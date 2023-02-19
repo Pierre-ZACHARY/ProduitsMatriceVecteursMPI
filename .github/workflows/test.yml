@@ -26,8 +26,10 @@ jobs:
 
       - name: Run tests
         run: |
-          ./build/tests/hello_test
+          cd build/tests
+          ./hello_test
 
       - name: Run mpi tests
         run: |
-          mpirun -np 4 ./build/tests/mpi_tests
+          cd build/tests
+          mpirun -np 2 ./mpi_tests
