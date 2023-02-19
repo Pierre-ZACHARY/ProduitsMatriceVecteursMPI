@@ -2,6 +2,23 @@ cmake_minimum_required(VERSION 3.16)
 project(ProduitsMatriceVecteursMPI)
 set(CMAKE_CXX_STANDARD 20)
 include_directories(classes)
+include(FetchContent)
+FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+if(APPLE)
+    set(OpenMP_C_FLAGS "-Xclang -fopenmp -I /usr/local/Cellar/libomp/15.0.7/include -L /usr/local/Cellar/libomp/15.0.7/lib")
+    set(OpenMP_C_LIB_NAMES "omp")
+    set(OpenMP_omp_LIBRARY omp)
+    set(OpenMP_CXX_FLAGS "-Xclang -fopenmp -I /usr/local/Cellar/libomp/15.0.7/include -L /usr/local/Cellar/libomp/15.0.7/lib")
+    set(OpenMP_CXX_LIB_NAMES "omp")
+    set(OpenMP_omp_LIBRARY omp)
+endif()
 
 # Find MPI
 Find_Package(MPI REQUIRED)
@@ -30,8 +47,8 @@ add_executable(Follower follower.cpp
         classes/Matrix.h
         classes/MPI1_Impl.cpp
         classes/MPI1_Impl.h)
-target_link_libraries(ProduitsMatriceVecteursMPI MPI::MPI_CXX OpenMP::OpenMP_CXX)
-target_link_libraries(Follower MPI::MPI_CXX OpenMP::OpenMP_CXX)
+target_link_libraries(ProduitsMatriceVecteursMPI MPI::MPI_CXX OpenMP::OpenMP_CXX GTest::gtest_main)
+target_link_libraries(Follower MPI::MPI_CXX OpenMP::OpenMP_CXX GTest::gtest_main)
 
 # Tests
 enable_testing()

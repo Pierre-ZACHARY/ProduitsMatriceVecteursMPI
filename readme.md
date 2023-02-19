@@ -13,6 +13,13 @@ Vous devriez pouvoir installer les dépendances windows avec **install_mpi.bat**
 - C:\Users\Public\Downloads\msmpisdk.msi /quiet
 - **Vous devrez probablement rouvrir CLION après l'installation**
 
+#### Pour macos : 
+- brew install open-mpi
+- brew install cmake
+- brew install libomp
+- il y a une config clion pour macos, vous pouvez trouver le chemin vers l'executable mpi avec "where mpirun"
+- le chemin vers openmp est spécifié dans le cmake, il est possible que vous deviez le changer ( pour le trouver : find /usr/local -name "omp.h" )
+
 #### Pour le dockerfile : 
 - docker build -t mpi .
 - docker run -it mpi

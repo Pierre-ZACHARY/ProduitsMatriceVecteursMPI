@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Windows - ProduitsMatriceVecteursMPI " type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-np 4 ./ProduitsMatriceVecteursMPI" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$PROJECT_DIR$/cmake-build-debug" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ProduitsMatriceVecteursMPI" TARGET_NAME="ProduitsMatriceVecteursMPI" CONFIG_NAME="Debug" RUN_PATH="$PROJECT_DIR$/../../../../../Program Files/Microsoft MPI/Bin/mpiexec.exe">
+  <configuration default="false" name="Windows - ProduitsMatriceVecteursMPI " type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="./ProduitsMatriceVecteursMPI" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$CMakeCurrentBuildDir$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ProduitsMatriceVecteursMPI" TARGET_NAME="ProduitsMatriceVecteursMPI" CONFIG_NAME="Debug" RUN_PATH="$PROJECT_DIR$/../../../../../Program Files/Microsoft MPI/Bin/mpiexec.exe">
     <envs>
       <env name="MPI_INCLUDE_PATH" value="MSMPI_INC=C:\Program Files (x86)\Microsoft SDKs\MPI\Include" />
     </envs>

@@ -8,4 +8,5 @@ TEST(MPITests, BasicAssertions) {
     // initialize argv with argv[0] = "1"
     char** argv = new char*[0];
     MPI1_Impl mpi1(1, argv);
+    mpi1.run(100);
 }

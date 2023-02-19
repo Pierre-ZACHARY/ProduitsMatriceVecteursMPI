@@ -1,7 +1,7 @@
 //
 // Created by Yukiix on 09/02/2023.
 //
-
+#include <gtest/gtest.h>
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
@@ -54,6 +54,9 @@ void MPI1_Impl::run(int size) {
     Matrix<float> m3(m1.rows(), m2.cols());
     MPI_Gatherv(m3_local.data(), m3_local.size(), MPI_FLOAT, m3.data(), sendcounts, displs, MPI_FLOAT, 0, MPI_COMM_WORLD);
 
+    if(world_rank == 0) {
+        ASSERT_EQ(m3(m3.rows()-1, m3.cols()-1), 2.0f * 6.0f * size);
+    }
 }
 
 
