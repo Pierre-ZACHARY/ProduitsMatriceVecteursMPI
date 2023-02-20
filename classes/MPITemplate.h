@@ -10,8 +10,12 @@
 #include <chrono>
 
 class MPITemplate {
-    protected:
-        int world_rank, world_size;
+public:
+    static bool is_initialized;
+    static int numInstances;
+
+protected:
+    int world_rank, world_size;
 
 public:
         MPITemplate(int argc, char** argv);

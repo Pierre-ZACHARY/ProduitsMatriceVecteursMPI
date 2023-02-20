@@ -32,7 +32,7 @@ public:
 
     void fromVector(const std::vector<T>& vec);
 
-    void fill(const T& value) { std::fill(m_data.begin(), m_data.end(), value); }
+    void fill(const T& value);
     friend std::ostream& operator<<(std::ostream& os, const Matrix<T>& mat) {
         for (int i = 0; i < mat.m_rows; ++i) {
             for (int j = 0; j < mat.m_cols; ++j) {
@@ -93,12 +93,35 @@ public:
         return s;
     }
 
+    Matrix<T> subMatrix(int startRow, int endRow);
+    void setSubMatrix(int startRow, int endRow, const Matrix<T>& subMatrix) {
+        for (int i = startRow; i < endRow; ++i) {
+            for (int j = 0; j < m_cols; ++j) {
+                (*this)(i, j) = subMatrix(i - startRow, j);
+            }
+        }
+    }
+
 
 protected:
     int m_cols;
     std::vector<T> m_data;
     int m_rows;
 };
+
+template<typename T>
+Matrix<T> Matrix<T>::subMatrix(int startRow, int endRow) {
+    Matrix<T> subMatrix(endRow - startRow, m_cols);
+    for (int i = startRow; i < endRow; ++i) {
+        for (int j = 0; j < m_cols; ++j) {
+            subMatrix(i - startRow, j) = (*this)(i, j);
+        }
+    }
+    return subMatrix;
+}
+
+template<typename T>
+void Matrix<T>::fill(const T &value) { std::fill(m_data.begin(), m_data.end(), value); }
 
 template<typename T>
 void Matrix<T>::fromVector(const std::vector<T> &vec) {

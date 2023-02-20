@@ -15,7 +15,7 @@ class MPI1_Impl: public MPITemplate{
         MPI1_Impl(int argc, char** argv);
         ~MPI1_Impl();
 
-        void run(int size);
+        void run(int size, int number_of_lines_with_zeros);
 };
 
 

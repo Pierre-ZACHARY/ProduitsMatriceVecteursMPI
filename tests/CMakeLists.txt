@@ -17,7 +17,7 @@ add_executable(
         ../classes/MPI1_Impl.cpp
         ../classes/MPITemplate.cpp
         ../classes/MPI1_Impl.h
-        ../classes/MPITemplate.h)
+        ../classes/MPITemplate.h ../classes/MPI2_Impl.cpp ../classes/MPI2_Impl.hpp)
 target_link_libraries(
         hello_test
         GTest::gtest_main

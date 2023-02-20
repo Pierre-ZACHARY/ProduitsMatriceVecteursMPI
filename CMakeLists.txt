@@ -39,7 +39,7 @@ add_executable(ProduitsMatriceVecteursMPI main.cpp
         classes/Matrix.cpp
         classes/Matrix.h
         classes/MPI1_Impl.cpp
-        classes/MPI1_Impl.h)
+        classes/MPI1_Impl.h classes/MPI2_Impl.cpp classes/MPI2_Impl.hpp)
 add_executable(Follower follower.cpp
         classes/MPITemplate.cpp
         classes/MPITemplate.h
