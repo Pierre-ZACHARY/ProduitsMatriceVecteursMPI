@@ -24,9 +24,15 @@ public:
 
     Matrix(int rows, int cols) : m_rows(rows), m_cols(cols), m_data(rows * cols) {}
     Matrix(const Matrix<T>& other) : m_rows(other.m_rows), m_cols(other.m_cols), m_data(other.m_data) {}
-    Matrix(Matrix<T>&& other) : m_rows(other.m_rows), m_cols(other.m_cols), m_data(std::move(other.m_data)) {}
+//    Matrix(Matrix<T>&& other) : m_rows(other.m_rows), m_cols(other.m_cols), m_data(std::move(other.m_data)) {}
 
-
+    Matrix<T> getLine(int line) const {
+        Matrix<T> result(1, m_cols);
+        for (int i = 0; i < m_cols; i++) {
+            result(0, i) = (*this)(line, i);
+        }
+        return result;
+    }
     T& operator()(int row, int col) { return m_data[row * m_cols + col]; }
     const T& operator()(int row, int col) const { return m_data[row * m_cols + col]; }
 

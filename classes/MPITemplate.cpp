@@ -4,6 +4,7 @@
 
 #include <cstdio>
 #include <iostream>
+#include <fstream>
 #include "MPITemplate.h"
 using namespace std;
 
@@ -18,7 +19,7 @@ MPITemplate::MPITemplate(int argc, char** argv) {
     numInstances++;
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
     MPI_Comm_size(MPI_COMM_WORLD, &world_size);
-    cout << "Hello from process " << world_rank << " out of " << world_size << " processes" << endl;
+//    cout << "Hello from process " << world_rank << " out of " << world_size << " processes" << endl;
 }
 
 MPITemplate::~MPITemplate() {

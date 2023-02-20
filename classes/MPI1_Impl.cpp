@@ -25,12 +25,13 @@ void MPI1_Impl::run(int size, int number_of_lines_with_zeros) {
     if (world_rank == 0) {
         m1.fill(2.0f);
         Matrix<float> zeros = Matrix<float>(number_of_lines_with_zeros, size);
+        zeros.fill(0.0f);
         m1.setSubMatrix(size/2-number_of_lines_with_zeros/2, size/2-number_of_lines_with_zeros/2 + number_of_lines_with_zeros, zeros);
         m2.fill(6.0f);
     }
 
-    chrono::time_point<chrono::system_clock> start, end;
-    start = chrono::system_clock::now();
+//    chrono::time_point<chrono::system_clock> start, end;
+//    start = chrono::system_clock::now();
 
     // Broadcast the second matrix to all other processes
     MPI_Bcast(m2.data(), m2.size(), MPI_FLOAT, 0, MPI_COMM_WORLD);
@@ -53,9 +54,9 @@ void MPI1_Impl::run(int size, int number_of_lines_with_zeros) {
 
     // Compute the local result
     Matrix<float> m3_local = m1_local * m2;
-    end = chrono::system_clock::now();
-    chrono::duration<double> elapsed_seconds = end - start;
-    printf("Local time for %d : %fs\n", world_rank, elapsed_seconds.count());
+//    end = chrono::system_clock::now();
+//    chrono::duration<double> elapsed_seconds = end - start;
+//    printf("Local time for %d : %fs\n", world_rank, elapsed_seconds.count());
 
     // Gather the local results
     Matrix<float> m3(m1.rows(), m2.cols());

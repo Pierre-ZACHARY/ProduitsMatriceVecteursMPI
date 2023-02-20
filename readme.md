@@ -30,3 +30,21 @@ Pour executer le programme il y a une config clion inclue, sinon vous pouvez le 
 - "mpiexec -n 4 ./main.exe" pour windows
 - "mpirun -n 4 ./main.exe" pour linux
 
+### Explication du code : 
+- MPITemplate réalise le init / finalize / comm rank / comm size 
+- Matrix est une classe template permettant de stocker différents types de variables ( int, float, double, etc... ), de les afficher / multiplier entre elles
+- les différentes classes MPI Impl contiennent les différentes versions ci-dessous
+
+#### Version MPI1
+- initialisation des deux matrices sur root
+- Scatterv, calcul du résultat locale, puis Gatherv 
+
+#### Version MPI2
+- Chaque processus calculs le nombre de lignes qu'il doit traiter et sa ligne de départ ( autant de lignes chacun +-1 )
+- Initialisation des deux matrices sur root
+- Ouverture d'une fenetre sur m1 et m2 sur Root uniquement ( null pour les autres )
+- Ouverture d'une fenetre sur m3 local sur chaque processus, de la taille du nombre de lignes à traiter
+- Chaque processus fait un Rget ( Get async, pour pouvoir en faire plusieurs en même temps ) de m2
+- Chaque processus fait un Rget des lignes à traiter de m1 
+- Chaque processsus calcul son m3_local, qui fait la taille du nombre de lignes à traiter
+- Root va faire un Rget de m3_local de chaque processus pour récupérer le résultat final sur m3

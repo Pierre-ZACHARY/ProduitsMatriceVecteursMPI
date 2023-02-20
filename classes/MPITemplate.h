@@ -13,13 +13,9 @@ class MPITemplate {
 public:
     static bool is_initialized;
     static int numInstances;
-
-protected:
     int world_rank, world_size;
-
-public:
-        MPITemplate(int argc, char** argv);
-        ~MPITemplate();
+    MPITemplate(int argc, char** argv);
+    ~MPITemplate();
 };
 
 
