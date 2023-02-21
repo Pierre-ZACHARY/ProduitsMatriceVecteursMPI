@@ -1,0 +1,80 @@
+Example du déroulement de l'implémentation leader follower avec 1 worker et deux matrice 10x10 remplie de 2 et de 6 avec les deux lignes centrales à 0
+Chaque worker reçoit un nombre x de lignes de la matrice a à chaque task, calcule le résultat et renvoi directement les lignes à Master, qui les ajoute à sa matrice C
+Le premier worker a avoir fini demande une nouvelle task à Master
+Lorsque master n'a plus aucune task à envoyer, il envoie un message de terminaison à tous les workers
+Les worker écoute sur les deux channels : Task et Terminaison, ils réagissent en fonction du message reçu grâce à MPI_Iprobe
+----------------------------------------------------------------------------------------------------------------------------
+Master process (global rank 0 / local rank 0) has spawned 1 worker processes.
+Worker process (global rank 1 / local rank 0) has been spawned.
+Master 0/0 Sending to 1 workers
+Master 0/0 Sending task:0 to 1
+Worker 1/0 : Received matrix b :
+6 6 6 6 6 6 6 6 6 6
+6 6 6 6 6 6 6 6 6 6
+6 6 6 6 6 6 6 6 6 6
+6 6 6 6 6 6 6 6 6 6
+6 6 6 6 6 6 6 6 6 6
+6 6 6 6 6 6 6 6 6 6
+6 6 6 6 6 6 6 6 6 6
+6 6 6 6 6 6 6 6 6 6
+6 6 6 6 6 6 6 6 6 6
+6 6 6 6 6 6 6 6 6 6
+
+Worker 1/0 : Received line 0 which contain :
+2 2 2 2 2 2 2 2 2 2
+2 2 2 2 2 2 2 2 2 2
+
+Master 0/0 : Received result for line 0 which contain :
+120 120 120 120 120 120 120 120 120 120
+120 120 120 120 120 120 120 120 120 120
+
+Master 0/0 Sending task:1 to 1
+Worker 1/0 : Received line 2 which contain :
+2 2 2 2 2 2 2 2 2 2
+2 2 2 2 2 2 2 2 2 2
+
+Master 0/0 : Received result for line 2 which contain :
+120 120 120 120 120 120 120 120 120 120
+120 120 120 120 120 120 120 120 120 120
+
+Master 0/0 Sending task:2 to 1
+Worker 1/0 : Received line 4 which contain :
+0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
+
+Master 0/0 : Received result for line 4 which contain :
+0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
+
+Master 0/0 Sending task:3 to 1
+Worker 1/0 : Received line 6 which contain :
+2 2 2 2 2 2 2 2 2 2
+2 2 2 2 2 2 2 2 2 2
+
+Master 0/0 : Received result for line 6 which contain :
+120 120 120 120 120 120 120 120 120 120
+120 120 120 120 120 120 120 120 120 120
+
+Master 0/0 Sending task:4 to 1
+Worker 1/0 : Received line 8 which contain :
+2 2 2 2 2 2 2 2 2 2
+2 2 2 2 2 2 2 2 2 2
+
+Master 0/0 : Received result for line 8 which contain :
+120 120 120 120 120 120 120 120 120 120
+120 120 120 120 120 120 120 120 120 120
+
+Master 0/0Worker 1/0: Received termination message
+: Sent termination message to Worker 1
+Master 0/0: All workers terminated.
+Result:
+120 120 120 120 120 120 120 120 120 120
+120 120 120 120 120 120 120 120 120 120
+120 120 120 120 120 120 120 120 120 120
+120 120 120 120 120 120 120 120 120 120
+0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
+120 120 120 120 120 120 120 120 120 120
+120 120 120 120 120 120 120 120 120 120
+120 120 120 120 120 120 120 120 120 120
+120 120 120 120 120 120 120 120 120 120

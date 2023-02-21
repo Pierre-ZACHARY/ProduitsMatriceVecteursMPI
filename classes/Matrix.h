@@ -22,6 +22,12 @@ public:
     T* data() { return m_data.data(); }
     int size() const { return m_data.size(); }
 
+    Matrix(int rows, int cols, T* data){
+        m_rows = rows;
+        m_cols = cols;
+        m_data = std::vector<T>(data, data + rows * cols);
+    }
+
     Matrix(int rows, int cols) : m_rows(rows), m_cols(cols), m_data(rows * cols) {}
     Matrix(const Matrix<T>& other) : m_rows(other.m_rows), m_cols(other.m_cols), m_data(other.m_data) {}
 //    Matrix(Matrix<T>&& other) : m_rows(other.m_rows), m_cols(other.m_cols), m_data(std::move(other.m_data)) {}
@@ -108,6 +114,16 @@ public:
         }
     }
 
+
+    Matrix<float> getSubMatrix(int i, int i1) {
+        Matrix<float> subMatrix(i1 - i, m_cols);
+        for (int j = i; j < i1; ++j) {
+            for (int k = 0; k < m_cols; ++k) {
+                subMatrix(j - i, k) = (*this)(j, k);
+            }
+        }
+        return subMatrix;
+    }
 
 protected:
     int m_cols;

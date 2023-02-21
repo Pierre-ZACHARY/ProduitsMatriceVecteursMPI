@@ -40,15 +40,18 @@ add_executable(ProduitsMatriceVecteursMPI main.cpp
         classes/Matrix.h
         classes/MPI1_Impl.cpp
         classes/MPI1_Impl.h classes/MPI2_Impl.cpp classes/MPI2_Impl.hpp)
-add_executable(Follower follower.cpp
-        classes/MPITemplate.cpp
-        classes/MPITemplate.h
+add_executable(LeaderFollower leader_follower.cpp
         classes/Matrix.cpp
         classes/Matrix.h
-        classes/MPI1_Impl.cpp
-        classes/MPI1_Impl.h)
+        classes/LeaderFollower/LeaderFollowerTemplate.cpp
+        classes/LeaderFollower/LeaderFollowerTemplate.hpp
+        classes/LeaderFollower/LeaderFollowerJobSystem.cpp
+        classes/LeaderFollower/LeaderFollowerJobSystem.hpp
+        classes/LeaderFollower/MessagePayload.hpp
+        classes/LeaderFollower/LeaderFollowerMultMat.cpp
+        classes/LeaderFollower/LeaderFollowerMultMat.hpp)
 target_link_libraries(ProduitsMatriceVecteursMPI MPI::MPI_CXX OpenMP::OpenMP_CXX GTest::gtest_main)
-target_link_libraries(Follower MPI::MPI_CXX OpenMP::OpenMP_CXX GTest::gtest_main)
+target_link_libraries(LeaderFollower MPI::MPI_CXX OpenMP::OpenMP_CXX GTest::gtest_main)
 
 # Tests
 enable_testing()
