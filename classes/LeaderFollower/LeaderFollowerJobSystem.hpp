@@ -14,6 +14,7 @@ class LeaderFollowerJobSystem : public LeaderFollowerTemplate {
 private:
     void listener();
     void sender(std::vector<MessagePayload>& payloads);
+    int numTasksCompleted = 0;
 
     MPI_Comm termination_comm; // send a message to this communicator to terminate the listener
     MPI_Request send(int rank, MessagePayload payload);

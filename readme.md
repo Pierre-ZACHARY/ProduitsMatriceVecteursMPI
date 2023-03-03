@@ -41,7 +41,7 @@ Pour executer le programme il y a une config clion inclue, sinon vous pouvez le 
 | MPI1                | 0,0326211 | 0,35955  | 2,55332 |
 | MPI1 + OpenMP       | 0,0254049 | 0,22047  | 2,3115  |
 | MPI2(RMA) + OpenMP  | 0,0559645 | 0,283473 | 2,96623 |
-| LeaderFollower      | /         | /        | /       |
+| LeaderFollower      | 0.0351513 | 0.2349   | 2.56174 |
 
 | 50% de zeros        | 256       | 512      | 1024    |
 |---------------------|-----------|----------|---------|
@@ -50,7 +50,7 @@ Pour executer le programme il y a une config clion inclue, sinon vous pouvez le 
 | MPI1                | 0,0342452 | 0,272957 | 2,44741 |
 | MPI1 + OpenMP       | 0,0324383 | 0,19225  | 2,24284 |
 | MPI2(RMA) + OpenMP  | 0,0363033 | 0,284174 | 2,95035 |
-| LeaderFollower      | /         | /        | /       |
+| LeaderFollower      | 0.0284883 | 0.246129 | 2.59376 |
 
 #### Remarques: 
 - On peut voir que sur cette machine la version séquentielle +OpenMp est plus rapide ; J'expliquerai cela par le fait qu'il n'y a pas de temps d'échanges de données. Sur un cluster où l'échange de données serait obligatoire, la version MPI serait sans doute plus rapide.
@@ -84,3 +84,15 @@ Pour executer le programme il y a une config clion inclue, sinon vous pouvez le 
   2) Les tasks généré par getInitialData sont automatiquement envoyés aux workers par le JobSystem ( voir sender / listener )
   3) traiter les messages reçus par les worker ( faire le calcul d'une ou plusieurs lignes )
   4) récupérer les résultats des worker et les stocker dans la matrice finale 
+- On peut voir tout l'intérêt de cette version en affichant le nombre de tasks effectués par chaque workers : ( exemple avec 11 workers et 256 lignes ( 2 lignes par tasks ))
+  - Worker 7/6 completed : 10 tasks
+  - Worker 2/1 completed : 14 tasks
+  - Worker 3/2 completed : 12 tasks
+  - Worker 9/8 completed : 12 tasks
+  - Worker 4/3 completed : 13 tasks
+  - Worker 10/9 completed : 8 tasks
+  - Worker 8/7 completed : 11 tasks
+  - Worker 5/4 completed : 14 tasks
+  - Worker 1/0 completed : 11 tasks
+  - Worker 11/10 completed : 11 tasks
+  - Worker 6/5 completed : 12 tasks 

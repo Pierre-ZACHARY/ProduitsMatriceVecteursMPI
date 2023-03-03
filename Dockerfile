@@ -13,5 +13,5 @@ COPY . .
 RUN cmake -S . -B build
 RUN cmake --build build
 
-#CMD ["mpirun","--allow-run-as-root", "-np", "4", "/app/build/ProduitsMatriceVecteursMPI"]
+CMD ["mpirun","--allow-run-as-root", "-np", "1", "/app/build/LeaderFollower"]
 #CMD ["./buid/tests/hello_test"]

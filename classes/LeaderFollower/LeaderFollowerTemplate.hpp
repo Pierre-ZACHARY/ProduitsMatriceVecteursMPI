@@ -13,8 +13,10 @@ protected:
     MPI_Comm parent_comm, worker_comm, merged_comm;
     void master();
     void worker();
+
+    int merged_size;
 private:
-    int merged_rank, merged_size;
+    int merged_rank;
     bool isMaster = false;
     int rank, size;
     int nworkers = 0;

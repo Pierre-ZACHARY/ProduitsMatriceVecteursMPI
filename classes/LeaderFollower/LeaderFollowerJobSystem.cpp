@@ -9,12 +9,14 @@ using namespace std;
 
 MPI_Request LeaderFollowerJobSystem::send(int rank, MessagePayload payload) {
     MPI_Request req;
+//    cout << *this << " Sending payload of size " << payload.size << " to " << rank << endl;
     MPI_Isend(payload.data, payload.size, MPI_BYTE, rank, 0, merged_comm, &req);
     return req;
 }
 
 MessagePayload LeaderFollowerJobSystem::receive(int rank) {
     unsigned char* data = new unsigned char[payloadSize];
+//    cout << *this << " Receiving payload of size " << payloadSize << " from " << rank << endl;
     MPI_Recv(data,payloadSize, MPI_BYTE, rank, 0, merged_comm, MPI_STATUS_IGNORE);
     MessagePayload payload(data, payloadSize);
     return payload;
@@ -26,7 +28,7 @@ void LeaderFollowerJobSystem::sender(vector<MessagePayload>& payloads) {
     int N = payloads.size();
     int idx_recv = 0;
     int idx_sent = 0;
-    int nworkers = 1;
+    int nworkers = merged_size- 1;
     // Array of workers requests
     MPI_Request sreqs_workers[nworkers];
     // -1 = start, 0 = channel not available, 1 = channel available
@@ -34,16 +36,18 @@ void LeaderFollowerJobSystem::sender(vector<MessagePayload>& payloads) {
     fill_n(status_workers, nworkers, -1);
 
     // Initial Send message to workers
-    cout << *this << " Sending to " << nworkers << " workers" << endl;
+//    cout << *this << " Sending to " << nworkers << " workers" << endl;
     for (int dst = 1; dst <= nworkers && idx_sent < N; dst++) {
-        cout << *this << " Sending task:"<<idx_sent<<" to " << dst << endl;
+//        cout << *this << " Sending task:"<<idx_sent<<" to " << dst << endl;
         sreqs_workers[dst - 1] = send(dst, payloads[idx_sent]);
         idx_sent++;
         status_workers[dst - 1] = 0;
     }
 
+//    cout << "Initial send done"<< endl;
     // Send and receive messages until all elements are added
     while (idx_recv != N) {
+//        cout << *this << " idx_recv: " << idx_recv << " idx_sent: " << idx_sent << endl;
         // Check to see if there is an available message to receive
         for (int dst = 1; dst <= nworkers; dst++) {
             if (status_workers[dst - 1] == 0) {
@@ -60,13 +64,14 @@ void LeaderFollowerJobSystem::sender(vector<MessagePayload>& payloads) {
                 MPI_Iprobe(dst, 0, merged_comm, &ismessage, MPI_STATUS_IGNORE);
                 if (ismessage) {
                     // Receives message
+//                    cout << *this << " Receiving task:"<<idx_recv<<" from " << dst << endl;
                     MessagePayload payload = receive(dst);
                     // do something with the worker payload
                     onTaskCompleted(dst, payload);
                     idx_recv++;
                     if (idx_sent < N) {
                         // Sends new message
-                        cout << *this << " Sending task:"<<idx_sent<<" to " << dst << endl;
+//                        cout << *this << " Sending task:"<<idx_sent<<" to " << dst << endl;
                         sreqs_workers[dst - 1] = send(dst, payloads[idx_sent]);
                         idx_sent++;
                         status_workers[dst - 1] = 1;
@@ -81,11 +86,11 @@ void LeaderFollowerJobSystem::sender(vector<MessagePayload>& payloads) {
         int termination_message = -1;
         MPI_Isend(&termination_message, 1, MPI_INT, dst, 0, termination_comm, &sreqs_workers[dst - 1]);
         status_workers[dst - 1] = 0;
-        cout << *this <<": Sent termination message to Worker " << dst << endl;
+//        cout << *this <<": Sent termination message to Worker " << dst << endl;
     }
 
     MPI_Waitall(nworkers, sreqs_workers, MPI_STATUSES_IGNORE);
-    cout << *this <<": All workers terminated." << endl;
+//    cout << *this <<": All workers terminated." << endl;
     onAllTasksCompleted();
 }
 
@@ -94,6 +99,7 @@ void LeaderFollowerJobSystem::listener() {
     int status_worker = -1; // -1 = start, 0 = channel not available, 1 = channel available
     int root = 0;
     onListenerInit();
+
     while (true) {
         MPI_Request sreq_worker;
         int ismessage, termination_message;
@@ -102,8 +108,10 @@ void LeaderFollowerJobSystem::listener() {
         if (ismessage) {
             // Receives message
             MessagePayload recv_mesg = receive(root);
+//            cout << *this << ": Received task" << endl;
             // Do something with the message
             MessagePayload new_mesg = onTaskReceived(recv_mesg);
+            numTasksCompleted++;
             // then tell the master that the task is completed
             sreq_worker = send(root, new_mesg);
             status_worker = 0;
@@ -112,7 +120,7 @@ void LeaderFollowerJobSystem::listener() {
             int recv_mesg;
             MPI_Recv(&recv_mesg, 1, MPI_INT, root, 0, termination_comm, MPI_STATUS_IGNORE);
             if (recv_mesg == -1) {
-                cout << *this << ": Received termination message" << endl;
+//                cout << *this << ": Received termination message" << endl;
                 break;
             }
             else{
@@ -128,6 +136,7 @@ void LeaderFollowerJobSystem::listener() {
             }
         }
     }
+//    cout << *this << " completed : "<< numTasksCompleted << " tasks " << endl;
 }
 
 

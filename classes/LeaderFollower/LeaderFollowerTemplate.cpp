@@ -20,7 +20,8 @@ void LeaderFollowerTemplate::worker() {
 }
 
 void LeaderFollowerTemplate::merge(MPI_Comm comm, int *_merged_rank, int *_merged_size) {
-    MPI_Intercomm_merge(comm, 0, &merged_comm);
+    if(isMaster) MPI_Intercomm_merge(comm, 0, &merged_comm);
+    else         MPI_Intercomm_merge(comm, 1, &merged_comm);
     MPI_Comm_rank(merged_comm, _merged_rank);
     MPI_Comm_size(merged_comm, _merged_size);
 }
