@@ -84,7 +84,7 @@ Pour executer le programme il y a une config clion inclue, sinon vous pouvez le 
   2) Les tasks généré par getInitialData sont automatiquement envoyés aux workers par le JobSystem ( voir sender / listener )
   3) traiter les messages reçus par les worker ( faire le calcul d'une ou plusieurs lignes )
   4) récupérer les résultats des worker et les stocker dans la matrice finale 
-- On peut voir tout l'intérêt de cette version en affichant le nombre de tasks effectués par chaque workers : ( exemple avec 11 workers et 256 lignes ( 2 lignes par tasks ))
+- On peut voir tout l'intérêt de cette version en affichant le nombre de tasks effectués par chaque workers : ( global_id / local_id ) ( exemple avec 11 workers et 256 lignes ( 2 lignes par tasks ))
   - Worker 7/6 completed : 10 tasks
   - Worker 2/1 completed : 14 tasks
   - Worker 3/2 completed : 12 tasks
