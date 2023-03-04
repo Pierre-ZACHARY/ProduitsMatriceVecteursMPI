@@ -21,10 +21,10 @@ if(APPLE)
 endif()
 
 # Find MPI
-set(MPI_C_HEADER_DIR "C:/Program Files (x86)/Microsoft SDKs/MPI/Include")
-set(MPI_CXX_HEADER_DIR "C:/Program Files (x86)/Microsoft SDKs/MPI/Include")
-set(MPI_C_LIBRARIES "C:/Program Files (x86)/Microsoft SDKs/MPI/Lib/x64/msmpi.lib")
-set(MPI_CXX_LIBRARIES "C:/Program Files (x86)/Microsoft SDKs/MPI/Lib/x64/msmpicxx.lib")
+# set(MPI_C_HEADER_DIR "C:/Program Files (x86)/Microsoft SDKs/MPI/Include")
+# set(MPI_CXX_HEADER_DIR "C:/Program Files (x86)/Microsoft SDKs/MPI/Include")
+# set(MPI_C_LIBRARIES "C:/Program Files (x86)/Microsoft SDKs/MPI/Lib/x64/msmpi.lib")
+# set(MPI_CXX_LIBRARIES "C:/Program Files (x86)/Microsoft SDKs/MPI/Lib/x64/msmpicxx.lib")
 Find_Package(MPI REQUIRED)
 
 # Find OpenMP
