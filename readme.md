@@ -1,6 +1,9 @@
 Pierre ZACHARY
 
-[![CppUnit Tests](https://github.com/Pierre-ZACHARY/ProduitsMatriceVecteursMPI/actions/workflows/test.yml/badge.svg)](https://github.com/Pierre-ZACHARY/ProduitsMatriceVecteursMPI/actions/workflows/test.yml)
+Lien du repo : https://github.com/Pierre-ZACHARY/ProduitsMatriceVecteursMPI/
+Edit 04/03 : Désolé pour le retard de rendu, j'ai complétement oublié de déposé. Vous pouvez vérifier dans les commits sur le repo ci-dessus pour vérifier que je n'ai pas dépassé le temps. 
+
+Vous obtiendrez plus d'information sur mes différentes implémentations, ainsi qu'une comparaison des performances dans les tableaux ci-dessous. Je vous conseil d'ouvrir ce readme avec une visionneur de markdown ( ou d'aller directement sur le git )
 
 ## Pré-requis 
 
